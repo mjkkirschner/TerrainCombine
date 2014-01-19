@@ -23,7 +23,7 @@ public class CentroidEditor : Editor {
 						Repaint ();
 						
 				}
-				
+				base.OnInspectorGUI ();
 
 	}
 

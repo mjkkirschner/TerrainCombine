@@ -188,7 +188,8 @@ public class TerrainController : MonoBehaviour
 								List<float> alphas = new List<float> ();
 								for (int k = 0; k < splatmap.GetLength (2); k++) {
 
-										// get all distances between current x,y and each centroid
+										// get all alpha values between current x,y and each centroid
+										// these should be 0 or 1 for now. texture on or off...
 										alphas.Add (splatmap [i, j, k]);
 
 
@@ -219,12 +220,12 @@ public class TerrainController : MonoBehaviour
 				for (int i = 0; i < heights.GetLength (0); i++) {
 						for (int j = 0; j < heights.GetLength (1); j++) {
 				
-								var splatmapPt = new Vector2 (i, j);
+								var splatmapPt = new Vector2 (j, i);
 								//Debug.Log (splatmapPt);
 							
-								splatmapPt = splatmapPt / 2; //terrain.terrainData.size.x / terrain.terrainData.alphamapWidth);
+								splatmapPt = splatmapPt /(float)((terrain.terrainData.size.x / terrain.terrainData.alphamapWidth)+.05);
 								//Debug.Log (splatmapPt);
-								var index = textureIndexs [(int)splatmapPt.x,(int)splatmapPt.y];
+								var index = textureIndexs [Mathf.FloorToInt(splatmapPt.x),Mathf.FloorToInt(splatmapPt.y)];
 
 								Texture2D curTex = centers [(int)index].GetComponent<Centroid> ().texture;
 								var height = heightFromPixel (curTex, terrain, i, j);

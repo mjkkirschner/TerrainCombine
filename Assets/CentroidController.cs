@@ -59,7 +59,7 @@ public class CentroidController : MonoBehaviour
 
 	}
 
-	public Texture2D initialTex (int x, int y){
+		static public Texture2D initialTex (int x, int y){
 				
 		var tex = new Texture2D(x,y);
 		for (int xx = 0; xx < tex.width;xx++){

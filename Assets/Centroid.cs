@@ -9,7 +9,7 @@ public class Centroid : MonoBehaviour
 		
 		
 		public Texture2D texold;
-		public Texture2D texture{ get; set;}
+		public Texture2D texture;//{ get; set;}
 		
 		public delegate void  dirty (GameObject movedObj);
 
@@ -27,6 +27,11 @@ public class Centroid : MonoBehaviour
 		{
 				// I should move the method that generates the default texture 
 				// to here and have it generate if texold = null.
+				if (texold == null) {
+						texold = CentroidController.initialTex (256, 256);
+						texture = texold;
+				}
+
 				if (texold.Equals (texture) == false) {
 
 						Debug.Log("texture updated somehow");
